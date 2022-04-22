@@ -1,0 +1,14 @@
+import { Component, OnInit } from '@angular/core';
+
+/* eslint-disable */
+
+@Component({
+  selector: 'angular-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.css'],
+})
+export class IndexComponent implements OnInit {
+  constructor() {}
+
+  ngOnInit(): void {}
+}
