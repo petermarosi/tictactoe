@@ -1,0 +1,28 @@
+{
+  "root": "apps/tictactoe-e2e",
+  "sourceRoot": "apps/tictactoe-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/tictactoe-e2e/cypress.json",
+        "devServerTarget": "tictactoe:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "tictactoe:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/tictactoe-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["tictactoe"]
+}

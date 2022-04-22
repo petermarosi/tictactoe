@@ -1,0 +1,93 @@
+{
+  "projectType": "application",
+  "root": "apps/tictactoe",
+  "sourceRoot": "apps/tictactoe/src",
+  "prefix": "angular",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/tictactoe",
+        "index": "apps/tictactoe/src/index.html",
+        "main": "apps/tictactoe/src/main.ts",
+        "polyfills": "apps/tictactoe/src/polyfills.ts",
+        "tsConfig": "apps/tictactoe/tsconfig.app.json",
+        "assets": [
+          "apps/tictactoe/src/favicon.ico",
+          "apps/tictactoe/src/assets"
+        ],
+        "styles": ["apps/tictactoe/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/tictactoe/src/environments/environment.ts",
+              "with": "apps/tictactoe/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "tictactoe:build:production"
+        },
+        "development": {
+          "browserTarget": "tictactoe:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "tictactoe:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/tictactoe/src/**/*.ts",
+          "apps/tictactoe/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/tictactoe"],
+      "options": {
+        "jestConfig": "apps/tictactoe/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

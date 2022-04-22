@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "tictactoe": "apps/tictactoe",
+    "tictactoe-e2e": "apps/tictactoe-e2e"
+  }
+}
