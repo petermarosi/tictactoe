@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /* eslint-disable */
 
 @Component({
   selector: 'angular-square',
-  templateUrl: './square.component.html',
-  styleUrls: ['./square.component.css'],
+  template: `
+    <button *ngIf="!value">{{ value }}</button>
+    <button *ngIf="value === 'X'">{{ value }}</button>
+    <button *ngIf="value === 'O'">{{ value }}</button>
+  `,
+  styles: ['button { width: 100%; height: 100%; font-size: 5em !important; }']
 })
-export class SquareComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class SquareComponent {
+  @Input() value = '';
 }
