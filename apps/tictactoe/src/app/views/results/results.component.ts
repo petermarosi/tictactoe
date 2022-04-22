@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 /* eslint-disable */
 
@@ -8,7 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./results.component.css'],
 })
 export class ResultsComponent implements OnInit {
-  constructor() {}
+  readonly ROOT_URL = 'http://localhost:5000';
 
-  ngOnInit(): void {}
+  boards: any;
+  activeIndex: number = -1;
+
+  constructor(private http: HttpClient) {
+  }
+
+  ngOnInit(): void {
+    this.getBoards();
+  }
+
+  getBoards() {
+    this.http.get<any>(this.ROOT_URL + '/boards').subscribe(data => {
+      console.log(data)
+      this.boards = data;
+    });
+  }
+
+  recieveMessage($event: any) {
+    this.activeIndex = $event
+  }
 }

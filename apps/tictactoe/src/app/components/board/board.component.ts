@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 /* eslint-disable */
 
@@ -11,6 +11,7 @@ export class BoardComponent implements OnInit {
   squares: string[] = [];
   xIsNext: boolean = true;
   winner: string = '';
+  @Input() save = '';
 
   constructor() {}
 
@@ -18,13 +19,38 @@ export class BoardComponent implements OnInit {
     this.newGame();
   }
 
-  newGame() {
-    this.squares = Array(9).fill('');
-    this.xIsNext = true;
-    this.winner = '';
+  ngOnChanges(): void {
+    //this.newGame();
   }
 
-  get player() {
+  newGame() {
+    if (this.save === '') {
+      this.squares = Array(9).fill('');
+      this.xIsNext = true;
+      this.winner = '';
+
+      return;
+    }
+
+    [...this.save].forEach((char, index) => {
+      switch (char) {
+        default:
+          this.squares[index] = '';
+          break;
+        case '1':
+          this.squares[index] = 'X';
+          break;
+        case '2':
+          this.squares[index] = 'O';
+          break;
+      }
+    });
+    //check who is current player
+    this.xIsNext = !!([...this.save].filter(char => char === '').length % 2);
+    this.winner = this.calculateWinner();
+  }
+
+  get player(): string {
     return this.xIsNext ? 'X' : 'O';
   }
 
@@ -37,6 +63,10 @@ export class BoardComponent implements OnInit {
   }
 
   calculateWinner() {
+    if (this.winner !== '') {
+      return this.winner;
+    }
+
     const lines = [
       [0, 1, 2], //first line
       [3, 4, 5], //second line

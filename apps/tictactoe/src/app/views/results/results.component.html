@@ -1,2 +1,9 @@
-<p>results works!</p>
 <a class="button" routerLink="">Index</a>
+<br>
+<angular-boards-table
+  (messageEvent)="recieveMessage($event)"
+></angular-boards-table>
+<angular-board
+  *ngIf="activeIndex >= 0"
+  [save]="boards[activeIndex].board"
+></angular-board>
