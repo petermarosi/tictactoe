@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 /* eslint-disable */
 
@@ -12,15 +12,13 @@ export class BoardComponent implements OnInit {
   xIsNext: boolean = true;
   winner: string = '';
   @Input() save = '';
+  @Output() messageEvent = new EventEmitter<string>();
+  board: string = '';
 
   constructor() {}
 
   ngOnInit(): void {
     this.newGame();
-  }
-
-  ngOnChanges(): void {
-    //this.newGame();
   }
 
   newGame() {
@@ -60,6 +58,21 @@ export class BoardComponent implements OnInit {
       this.xIsNext = !this.xIsNext;
     }
     this.winner = this.calculateWinner();
+
+    this.squares.forEach(square => {
+      switch (square) {
+        default:
+          this.board = this.board + '0';
+          break;
+        case "X":
+          this.board = this.board + '1';
+          break;
+        case "O":
+          this.board = this.board + '2';
+          break;
+      }
+    });
+    this.messageEvent.emit(this.board);
   }
 
   calculateWinner() {

@@ -1,3 +1,7 @@
 <a class="button" routerLink="/results">Results</a>
 <br>
-<angular-board></angular-board>
+{{ board + '\n'}}
+<angular-board
+  (messageEvent)="receiveMessage($event)"
+></angular-board>
+<br>

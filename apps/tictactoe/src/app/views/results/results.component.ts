@@ -28,7 +28,7 @@ export class ResultsComponent implements OnInit {
     });
   }
 
-  recieveMessage($event: any) {
+  receiveMessage($event: any) {
     this.activeIndex = $event
   }
 }

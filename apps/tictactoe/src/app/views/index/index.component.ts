@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { FormBuilder } from '@angular/forms';
 
 /* eslint-disable */
 
@@ -8,8 +9,25 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css'],
 })
 export class IndexComponent implements OnInit {
-  constructor() {}
+
+  /*saveForm = this.formBuilder.group({
+    name: '',
+  });*/
+  board: string = '';
+
+  constructor(/*private formBuilder: FormBuilder*/) {}
 
   ngOnInit(): void {}
 
+  /*uploadSave(): void {
+    if (this.saveForm.value === '') {
+      return;
+    }
+    console.log()
+    this.saveForm.reset();
+  }*/
+
+  receiveMessage($event: any) {
+    this.board = $event
+  }
 }
