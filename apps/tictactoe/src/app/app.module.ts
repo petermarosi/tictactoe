@@ -12,6 +12,8 @@ import { BoardsTableComponent } from './components/boards-table/boards-table.com
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -22,7 +24,7 @@ import { MatSortModule } from '@angular/material/sort';
     ResultsComponent,
     BoardsTableComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MatTableModule, MatPaginatorModule, MatSortModule, ReactiveFormsModule, BrowserAnimationsModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

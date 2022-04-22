@@ -1,7 +1,18 @@
 <a class="button" routerLink="/results">Results</a>
 <br>
-{{ board + '\n'}}
 <angular-board
   (messageEvent)="receiveMessage($event)"
 ></angular-board>
 <br>
+<form [formGroup]="saveForm" (ngSubmit)="onSubmit()">
+
+  <div>
+    <label for="name">
+      Name
+    </label>
+    <input id="name" type="text" formControlName="name">
+  </div>
+
+  <button class="button" type="submit">Save</button>
+
+</form>

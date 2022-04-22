@@ -13,6 +13,7 @@ export class ResultsComponent implements OnInit {
 
   boards: any;
   activeIndex: number = -1;
+  query: string = '';
 
   constructor(private http: HttpClient) {
   }
@@ -21,9 +22,16 @@ export class ResultsComponent implements OnInit {
     this.getBoards();
   }
 
+  onChange() {
+    this.getBoards();
+  }
+
   getBoards() {
-    this.http.get<any>(this.ROOT_URL + '/boards').subscribe(data => {
-      console.log(data)
+    this.http.get<any>(this.ROOT_URL + '/boards', {
+      params: {
+        name: this.query
+      }
+    }).subscribe(data => {
       this.boards = data;
     });
   }

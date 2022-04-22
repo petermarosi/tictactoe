@@ -5,3 +5,9 @@
 .row {
   cursor: pointer;
 }
+button {
+  z-index: 999;
+  border: 1px gray solid;
+  height: 20px;
+  width: 50px;
+}

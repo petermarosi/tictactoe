@@ -1,6 +1,9 @@
 <a class="button" routerLink="">Index</a>
 <br>
+Search: <input type="text" [(ngModel)]="query" (ngModelChange)="onChange()">
 <angular-boards-table
+  *ngIf="boards"
+  [data]="boards"
   (messageEvent)="receiveMessage($event)"
 ></angular-boards-table>
 <angular-board

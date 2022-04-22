@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-//import { FormBuilder } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { HttpClient } from "@angular/common/http";
 
 /* eslint-disable */
 
@@ -9,23 +10,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.css'],
 })
 export class IndexComponent implements OnInit {
-
-  /*saveForm = this.formBuilder.group({
+  readonly ROOT_URL = 'http://localhost:5000';
+  saveForm = this.formBuilder.group({
     name: '',
-  });*/
+  });
   board: string = '';
 
-  constructor(/*private formBuilder: FormBuilder*/) {}
+  constructor(private formBuilder: FormBuilder, private http: HttpClient) {}
 
   ngOnInit(): void {}
 
-  /*uploadSave(): void {
-    if (this.saveForm.value === '') {
+  onSubmit(): void {
+    if (this.saveForm.value.name === '' || this.board === '') {
       return;
     }
-    console.log()
+    let save = this.saveForm.value;
+    save.board = this.board;
+
+    this.uploadSave(save);
+
     this.saveForm.reset();
-  }*/
+  }
+
+  uploadSave(save: any): void {
+    this.http.post<any>(this.ROOT_URL + '/boards', save).subscribe(data => {
+      console.log(data)
+    })
+  }
 
   receiveMessage($event: any) {
     this.board = $event

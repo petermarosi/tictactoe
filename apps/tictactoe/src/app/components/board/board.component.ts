@@ -22,6 +22,10 @@ export class BoardComponent implements OnInit {
   }
 
   newGame() {
+    //reset board
+    this.board = '';
+    this.messageEvent.emit(this.board);
+
     if (this.save === '') {
       this.squares = Array(9).fill('');
       this.xIsNext = true;
@@ -59,6 +63,7 @@ export class BoardComponent implements OnInit {
     }
     this.winner = this.calculateWinner();
 
+    this.board = '';
     this.squares.forEach(square => {
       switch (square) {
         default:

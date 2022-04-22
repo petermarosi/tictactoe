@@ -12,24 +12,23 @@ export interface BoardsTableItem {
   id: number;
 }
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: BoardsTableItem[] = [
-  {id: 1, name: "string", board: "001020001"},
-  {id: 2, name: "string2", board: "001020201"}
-];
-
 /**
  * Data source for the BoardsTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
 export class BoardsTableDataSource extends DataSource<BoardsTableItem> {
-  data: BoardsTableItem[] = EXAMPLE_DATA;
+  data: BoardsTableItem[];
   paginator: MatPaginator | undefined;
   sort: MatSort | undefined;
 
-  constructor() {
+  constructor(data: BoardsTableItem[] = []) {
     super();
+    if (!data.length) {
+      this.data = [];
+      return;
+    }
+    this.data = data;
   }
 
   /**
